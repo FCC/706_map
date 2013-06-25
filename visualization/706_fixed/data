@@ -1,0 +1,129 @@
+/* This is where the data is called and styled. */
+/* Uncomment for use.                           */
+@avail: #329000 ;  /* #00A876 #62ca2a;*/  
+@under: #7aee3c; /*#00A876;*/
+@una: #ff8240; /*#ffa473 ; /*#ff5900;*/
+@unPop: #fffde3;
+
+@avail_rural: #80c85a ;
+@avail_urban: #329000 ;
+@una_rural: #ffb996 ;
+@una_urban: #ff8240 ;
+@tribal: #a60000;
+
+/*tribal layer*/
+#tribal {
+  ::outline [zoom>0][zoom<6]{
+    line-color: @tribal;
+    line-width: .25;
+    line-join: round;
+  }
+  ::outline [zoom>5]{
+    line-color: @tribal;
+    line-width: 1;
+    line-join: round;
+  }
+  [zoom>6]{
+  text-name:"[tribal_name]";
+  text-face-name:@sans-bold;
+  text-size:9;
+  text-fill:fadeout(@tribal, 55%);
+  text-halo-radius:2;
+  }
+}
+
+/*the cty_mcaf layer exists soley for the mouse over properties
+  this layer gives the mouse over values, so we draw it as opaque 
+  and place it last or nearly last in the add layer list*/
+#main706_cty_poly{
+  [zoom>4]{
+   polygon-fill: @fccblue;
+  }
+}
+
+/*
+--  (1) fixed availability at 3/768
+--  (2) unavailable at 3/768 w/ population
+--  (3) unpopulated
+--  (4) water
+*/
+
+/*main760fixed_poly*/
+/*
+#main706fixed_poly {
+  [zoom>0][myvalue='1'][rural_urban='U']{
+    polygon-fill:@avail_urban }
+  [zoom>0][myvalue='1'][rural_urban='R']{
+    polygon-fill:@avail_rural }
+  [zoom>0][myvalue='2'][rural_urban='U']{
+    polygon-fill:@una_urban}
+  [zoom>0][myvalue='2'][rural_urban='R']{
+    polygon-fill:@una_rural}  
+  [zoom>0][myvalue='3']{
+    polygon-fill:@unPop}
+  [zoom>0][myvalue='4']{
+    polygon-fill:@water}
+}*/
+
+/*the county layer draw all county boudaries and labels the county names*/
+#county {
+ [zoom>4][zoom<7]{
+  line-color:@darkchrome;
+  line-opacity:0.15;
+  line-width:0.85;
+    }
+}
+
+#county {
+ [zoom>6][zoom<9]{
+  line-color:@darkchrome;
+  line-opacity:0.15;
+  line-width:1.75;
+    }
+  [zoom>8]{
+  line-color:@darkchrome;
+  line-opacity:0.15;
+  line-width:2.75;
+  }
+  [zoom>7]{
+  text-name:"[cty_name]";
+  text-face-name:@sans-bold;
+  text-size:9;
+  text-fill:fadeout(@state-name, 55%);
+  text-halo-radius:3;
+  }
+}
+
+/*the state high res layer comes on above zoom scale 7 so the block, county
+  and state layers are all coincident*/
+
+/*the nearshore layer is water and on top to cover 'land' and get a 
+  nice coast line*/
+#nearshore {
+  [zoom>7] {
+  polygon-fill:@water; 
+  }
+}
+
+#state_high_res {
+  [zoom>7]{
+    line-color: fadeout(#222c31, 45%); 
+    line-width:2.0;
+    }
+ }
+ 
+/*add tract polygon labels*/
+/*
+#mcaf_tract_poly {
+ [zoom>8]{
+  line-color:@fcclightblue;
+  line-opacity:0.5;
+  line-width:0.65;
+  text-name:"[tract]";
+  text-face-name:@sans-bold;
+  text-size:10.5;
+  text-fill:fadeout(@fcclightblue, 55%);
+  text-halo-radius:3.5;
+  }
+}
+*/
