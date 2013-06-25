@@ -1,0 +1,76 @@
+/* This is where the data is called and styled. */
+/* Uncomment for use.                           */
+@avail: #329000 ;  /* #00A876 #62ca2a;*/  
+@under: #7aee3c; /*#00A876;*/
+@una: #ff8240; /*#ffa473 ; /*#ff5900;*/
+@unPop: #fffde3;
+
+@avail_3768: #329000   ;
+@avail_lt_3768: #80c85a;
+@una_rural: #ffb996 ;
+@una_urban: #ff8240 ;
+
+/*
+--  (1) mobile availability of at least than 768/200
+--  (2) mobile availability at 3/768
+*/
+/*main760mobile_poly*/
+#main706_mobile_poly {
+  [zoom>0][speed=1]{
+    polygon-fill:@avail_3768 }
+  [zoom>0][speed=0]{
+    polygon-fill:@avail_lt_3768 }
+}
+
+/*unavailable*/
+#unavailable {
+  [zoom>0]{
+    polygon-fill:@una_urban}
+}
+
+/*the county layer draw all county boudaries and labels the county names*/
+#county {
+ [zoom>4][zoom<7]{
+  line-color:@darkchrome;
+  line-opacity:0.15;
+  line-width:0.85;
+    }
+}
+
+#county {
+ [zoom>6][zoom<9]{
+  line-color:@darkchrome;
+  line-opacity:0.15;
+  line-width:1.75;
+    }
+  [zoom>8]{
+  line-color:@darkchrome;
+  line-opacity:0.15;
+  line-width:2.75;
+  }
+  [zoom>7]{
+  text-name:"[cty_name]";
+  text-face-name:@sans-bold;
+  text-size:9;
+  text-fill:fadeout(@state-name, 55%);
+  text-halo-radius:2.5;
+  }
+}
+
+/*the state high res layer comes on above zoom scale 7 so the block, county
+  and state layers are all coincident*/
+/*the nearshore layer is water and on top to cover 'land' and get a 
+  nice coast line*/
+#nearshore {
+  [zoom>7] {
+  polygon-fill:@water; 
+  }
+}
+
+#state_high_res {
+  [zoom>7]{
+    line-color: fadeout(#222c31, 45%); 
+    line-width:2.0;
+    }
+ }
+ 
