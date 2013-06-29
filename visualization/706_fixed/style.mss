@@ -22,6 +22,7 @@ Map {
 
 #islands::fill {
   polygon-fill:@white;
+  polygon-opacity:1;
 }
 
 #country-border::glow {
