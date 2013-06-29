@@ -13,22 +13,10 @@
   "format": "png",
   "interactivity": {
     "layer": "main706_cty_poly",
-    "template_teaser": "<table class=\"tbl-data\">\n<tr>\n  <th colspan=\"3\" class=\"center\"><strong>County Demographics</strong></th>\n</tr>\n<tr>\n  <th colspan=\"3\" class=\"center\">{{{state_abbv}}} - {{{county_name}}} County</th>\n</tr>\n<tr>\n  <td colspan=\"2\" class=\"left\">Total Population:</td>\n  <td class=\"right\">{{{pop_2011}}}</td>\n</tr>\n<tr>\n  <td colspan=\"2\" class=\"right\">- Population Without Access:</td>\n  <td class=\"right\">{{{unavail}}}</td>\n</tr>\n<tr>\n  <td colspan=\"2\" class=\"left\">Population Densisty (pop./sq. mi.):</td>\n  <td class=\"right\">{{{popdensity}}}</td>\n</tr>\n<tr>\n  <td colspan=\"2\" class=\"left\">Per Capita Income:</td>\n  <td class=\"right\">${{{percapinc}}}</td>\n<tr>\n  <th colspan=\"3\" class=\"center\"><strong>Percentage of Housing Units in County with</strong></th>\n</tr>\n<tr>\n  <th colspan=\"3\" class=\"center\"><strong>Access to Broadband by Technology</strong></th>\n</tr>\n  <td colspan=\"3\" class=\"center\"><img src=\"https://chart.googleapis.com/chart?chs=250x200\n&cht=bhg\n&chf=a,s,FFFFFF&chts=000000,12,l\n&chma=0,0,0,0\n&chxt=x,y,r\n&chxl=1:|Fixed WL|DSL|Cable|Fiber|2:|{{{wisp_hhu_per}}}%|{{{dsl_hhu_per}}}%|{{{cable_hhu_per}}}%|{{{fiber_hhu_per}}}%\n&chco=5e5e5e&chbh=r\n&chxr=0,0,0,0\n&chds=0,100\n&chd=t:{{{fiber_hhu_per}}},{{{cable_hhu_per}}},{{{dsl_hhu_per}}},{{{wisp_hhu_per}}}\n&chdls=000000&chdlp=b\n&chg=10,12.5,1,1\"\\></td>\n<tr>\n  <td colspan=\"3\" class=\"center\">Source: National Broadband Map Data as of June 2011</td>\n</tr>\n</table>\n\n<style type=\"text/css\">\n .ts-map .wax-tooltip {\n  max-width: 350px !important;\n  max-height:550px !important;\n  overflow:visible !important;\n  width:auto\\9 !important;\n}\n .tbl-data td.right {\n text-align: right;\n }\n .tbl-data th.center {\n text-align: center;\n } \n .tbl-data td.left {\n text-align: left;\n }\n .tbl-data td, .tbl-data th {\n border: none;\n }\n</style>\n",
+    "template_teaser": "<table class=\"temp-tbl-data\">\n  <tr><th colspan=\"3\" class=\"center\">{{{cty_name}}} County, {{{state_name}}}</th><td></tr>\n  <tr><th colspan=\"3\" class=\"center\"<strong>County Demographics</strong></th></tr>\n\n  <tr><td colspan=\"2\" class=\"left\">Total Population:</td>\n      <td class=right>{{{pop_2012}}}</td></tr>\n\n  <tr><td colspan=\"2\" class=\"left\">Population Density (pop./sq mi.):</td>\n      <td class=right>{{{density}}}</td></tr>\n\n  <tr><td colspan=\"2\" class=\"left\">Per Capita Income:</td>\n      <td class=right>${{{percapinc}}}</td></tr>\n</table>\n\n\n<style type=\"text/css\">\n.ts-map .wax-tooltip {\n  max-width:50px !important;\n  max-height:300px !important;\n  overflow:visible !important;\n  width:auto\\9 !important;\n}\n.temp-tbl-data td.right {\ntext-align: right;}\n.temp-tbl-data th.center{\ntext-align: center;}\n.temp-tbl-data td.left{\ntext-align td.left;}\n.temp-tbl-data td, .temp-tbl-data th{\nborder: none;}\n</style>\n",
     "template_full": "",
     "template_location": "",
-    "fields": [
-      "state_abbv",
-      "county_name",
-      "pop_2011",
-      "unavail",
-      "popdensity",
-      "percapinc",
-      "wisp_hhu_per",
-      "dsl_hhu_per",
-      "cable_hhu_per",
-      "fiber_hhu_per",
-      "gid"
-    ]
+    "fields": []
   },
   "minzoom": 2,
   "maxzoom": 10,
@@ -40,6 +28,35 @@
     "data"
   ],
   "Layer": [
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.14723599999994,
+        -14.548698999999917,
+        179.77846999999988,
+        71.39038000000002
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select gid, geom, cty, cty_name, state_name, fips, to_char(pop_2012,'999,999,999') as pop_2012, round(density,0) as density, to_char(percapinc,'999,999,999') as percapinc\nfrom carto.county, sbi2012june.main706_cty\nwhere county.cty=main706_cty.fips\n) as main706_cty_poly",
+        "key_field": "gid",
+        "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19942579.0885424,-1637243.58853687,20012847.7359938,11537091.7298767",
+        "host": "localhost",
+        "port": "54321",
+        "dbname": "feomike",
+        "id": "main706_cty_poly",
+        "project": "706_fixed",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "main706_cty_poly",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "main706_cty_poly"
+    },
     {
       "geometry": "polygon",
       "id": "land",
@@ -54,27 +71,6 @@
       }
     },
     {
-      "geometry": "polygon",
-      "Datasource": {
-        "type": "postgis",
-        "table": "(\nselect gid, geom, cty,  cty_name, county_fips, fullname,  \n  to_char(pop_2011_p,'999,999,999') as pop_2011, to_char(hhu_2011, '999,999,999') as hhu_2011, round(dsl_hhu_per) as dsl_hhu_per, round(cable_hhu_per) as cable_hhu_per , round(fiber_hhu_per) as fiber_hhu_per , round(copper_hhu_per) as copper_hhu_per, round(other_hhu_per) as other_hhu_per, round(wisp_hhu_per) as wisp_hhu_per,  to_char(landarea,'999,999,999') as landarea, to_char(percapinc,'999,999,999') as percapinc, to_char(popdensity_p,'999,999,999') as popdensity, state_abbv, county_name, to_char(unavail_3000_768, '999,999,999') as unavail\nfrom carto.county\ninner join analysis.main706_final_cty on\n(county.cty=main706_final_cty.county_fips)\n)\nas main706_cty",
-        "extent": "",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "dbname": "fccgis",
-        "host": "localhost",
-        "port": "54321",
-        "id": "main706_cty_poly",
-        "project": "706_fixed",
-        "srs": null
-      },
-      "id": "main706_cty_poly",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "main706_cty_poly"
-    },
-    {
       "id": "countries",
       "name": "countries",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
@@ -85,25 +81,82 @@
       "class": ""
     },
     {
-      "geometry": "multipolygon",
+      "geometry": "polygon",
+      "extent": [
+        -179.14723599999994,
+        -14.548698999999917,
+        179.77846999999988,
+        71.39038000000002
+      ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from carto.states where state in ('60','66','69','72','78') ) as islands",
-        "extent": "",
+        "table": "(select * from carto.state) as state_high_res",
         "key_field": "gid",
         "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19942579.0885424,-1637243.58853687,20012847.7359938,11537091.7298767",
         "host": "localhost",
         "port": "54321",
-        "dbname": "fccgis",
-        "id": "islands",
-        "project": "706map",
-        "srs": null
+        "dbname": "feomike"
+      },
+      "id": "state_high_res",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "state_high_res"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.14723599999994,
+        -14.548698999999917,
+        179.77846999999988,
+        71.39038000000002
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from carto.state\nwhere state in ('60','66','69','72','78') ) as islands",
+        "key_field": "gid",
+        "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19942579.0885424,-1637243.58853687,20012847.7359938,11537091.7298767",
+        "host": "localhost",
+        "port": "54321",
+        "dbname": "feomike"
       },
       "id": "islands",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
       "name": "islands"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.23108599999978,
+        -14.60181299999999,
+        179.85968099999982,
+        71.44105899999991
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from sbi2012june.main706_fixed_poly) as main706_fixed_poly",
+        "key_field": "gid",
+        "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19951913.2278454,-1643352.8198603,20021888.1031606,11554793.5711918",
+        "host": "localhost",
+        "port": "54321",
+        "dbname": "feomike"
+      },
+      "id": "main706_fixed_poly",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "main706_fixed_poly"
     },
     {
       "geometry": "polygon",
@@ -120,63 +173,29 @@
     },
     {
       "geometry": "polygon",
+      "extent": [
+        -179.23108599999978,
+        -14.60181299999999,
+        179.85968099999982,
+        71.44105899999991
+      ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from analysis.main706fixed_final_poly ) as main706fixed_poly",
-        "extent": "",
+        "table": "(select * from carto.water_poly) as nearshore",
         "key_field": "gid",
         "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19951913.2278454,-1643352.8198603,20021888.1031606,11554793.5711918",
         "host": "localhost",
         "port": "54321",
-        "dbname": "fccgis",
-        "id": "main706fixed_poly",
-        "project": "706_fixed",
-        "srs": null
+        "dbname": "feomike"
       },
-      "id": "main706fixed_poly",
+      "id": "nearshore",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "main706fixed_poly"
-    },
-    {
-      "geometry": "polygon",
-      "Datasource": {
-        "type": "postgis",
-        "table": "(select * from carto.tribal) as tribal",
-        "extent": "",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "host": "localhost",
-        "port": "54321",
-        "dbname": "fccgis",
-        "id": "tribal",
-        "project": "WirelessAvailability",
-        "srs": null
-      },
-      "id": "tribal",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "tribal"
-    },
-    {
-      "geometry": "multipolygon",
-      "name": "state_high_res",
-      "id": "state_high_res",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "class": "",
-      "Datasource": {
-        "table": "(select * from carto.states) as state_high_res",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "extent": "",
-        "type": "postgis",
-        "dbname": "fccgis",
-        "host": "localhost",
-        "port": "54321"
-      },
-      "srs-name": "900913"
+      "advanced": {},
+      "name": "nearshore"
     },
     {
       "geometry": "polygon",
@@ -218,45 +237,6 @@
       }
     },
     {
-      "geometry": "multipolygon",
-      "name": "nearshore",
-      "id": "nearshore",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "class": "",
-      "Datasource": {
-        "table": "(select * from carto.water_poly \n) as nearshore",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "extent": "",
-        "type": "postgis",
-        "dbname": "fccgis",
-        "host": "localhost",
-        "port": "54321"
-      },
-      "srs-name": "900913"
-    },
-    {
-      "geometry": "polygon",
-      "name": "county",
-      "id": "county",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "class": "",
-      "Datasource": {
-        "table": "(select * from carto.county\n) as county",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "extent": "",
-        "type": "postgis",
-        "dbname": "fccgis",
-        "host": "localhost",
-        "port": "54321",
-        "id": "county",
-        "project": "RoadMiles",
-        "srs": null
-      },
-      "srs-name": "900913"
-    },
-    {
       "geometry": "linestring",
       "id": "coastline",
       "name": "coastline",
@@ -284,19 +264,77 @@
     },
     {
       "geometry": "point",
-      "name": "statecentroids",
+      "extent": [
+        -156.35303236685562,
+        20.268831817091524,
+        -69.23046123415384,
+        65.03481843167305
+      ],
       "id": "statecentroids",
-      "srs": "",
       "class": "",
       "Datasource": {
-        "file": "/Users/michaelsbyrne/Documents/Data/state_centroids.shp",
-        "id": "statecentroids",
-        "project": "RoadMiles",
-        "srs": null
+        "file": "https://raw.github.com/where-gov/fcc/master/basemap/state_centroids.geojson"
       },
-      "srs-name": "autodetect"
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "statecentroids"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -174.2371010000002,
+        18.910696000000012,
+        -67.03551799999995,
+        71.34025700000004
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from carto.tribal) as tirbal_lines",
+        "key_field": "gid",
+        "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19395985.3606162,2144424.63231692,-7462359.72882332,11519629.7739187",
+        "host": "localhost",
+        "port": "54321",
+        "dbname": "feomike"
+      },
+      "id": "tribal_lines",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "tribal_lines"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.14723599999994,
+        -14.548698999999917,
+        179.77846999999988,
+        71.39038000000002
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from carto.county) as county_lines",
+        "key_field": "gid",
+        "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19942579.0885424,-1637243.58853687,20012847.7359938,11537091.7298767",
+        "host": "localhost",
+        "port": "54321",
+        "dbname": "feomike"
+      },
+      "id": "county_lines",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "county_lines"
     }
   ],
+  "scale": 1,
+  "metatile": 2,
   "name": "Section 706 Fixed Broadband Deployment Map",
   "description": "This map was created by the FCC in conjunction with the Eighth Broadband Progress Report, as required by section 706 of the Telecommunications Act of 1996.  This map relies upon the National Broadband Map data (SBI Data) as of June 30, 2011.  This map shows Americans with and without access to fixed broadband meeting the section 706 benchmark by US Census Blocks throughout the United States, its territories, and federally recognized Tribal lands.  The broadband benchmark is 4 Mbps up and 1 Mbps down but because SBI Data is not collected at those speeds, we rely on the closest speed tier, 3 Mbps download speed and 768 kbps upload speed (3 Mbps/768 kbps).  This map does not include mobile wireless and satellite broadband data.  The map indicates rural and non-rural areas, unpopulated areas, and identifies the Tribal land boundaries in red.  “Rural” has the same meaning as defined by the 2000 census.\n\nAs you zoom in, the areas “With Access” to fixed broadband are shaded dark green to indicate rural areas or shaded green to indicate non-rural areas.  Those areas “Without Access” are shaded light orange to indicate rural areas and dark orange to indicate non-rural areas.  Further zooming in, you will see more information in a mouse-over.  The mouse-over shows the demographics required by section 706, the average population, average population density (pop./sq. mi.), and the average per capita income for the counties without access to fixed broadband.  You will also see the type and percentage of fixed broadband technology available in each county. ",
   "attribution": "<img align=\"left\" src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAAASCAYAAAC5ICcsAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6N0JGNDU3NjZDNjlBMTFFMEEwNDU5QkY4MjlFMkJGN0UiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6N0JGNDU3NjdDNjlBMTFFMEEwNDU5QkY4MjlFMkJGN0UiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3QkY0NTc2NEM2OUExMUUwQTA0NTlCRjgyOUUyQkY3RSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3QkY0NTc2NUM2OUExMUUwQTA0NTlCRjgyOUUyQkY3RSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjqrMHUAAAWmSURBVHja7Jp5bFRVFMZnWrpCK6BWLWJtaXEBa4mJFJeQgkskAa24JC5xSdRYDWIQQZHgggFRSvUPa9WgxgVJjAv+AUFpTQNq0ZpIC1hTStEqglXoOu0Ard9Jfq++Tqadrv+9k3xM35v77j3nu9859943+Lu7u32eeTbSNsb+ycubc50+Jghdru/ihR3Cn1zPEq4Xpgqmxn3C10KFR6NnjpWVlf4vLFmRcFFIm4PCl8J5QqGwMEw/q4X3hOXCXx6tnvWqWJgJ41mqkd3fJpwjbBXShM+FYqFaiBJmCA8I9wi5wm3CHo9Sz9zCss9GocT1XQpL4VnCjcIW4QLhBpbMMmGBcKfwgfAK353yaPXMEVY3VchtLwjnI5wtLJePhbTZICxjH/a7JyrPHHOLyX08HCfcKnwrfCSsQVTbhXzhFmG3UCBcSvWqHeCYZwoXC5cIGf20ixGSBpkkp4e5b/7NpL/RtARhyiCfyRLihjHmWA5VF46A/8Z1eoQ2iRHmLGzFMuLPoOpcxSmxhM8lQrkwXwjyzHb2YL8OMoC1QqfQIPwh1EHOv0INRM9iD2fL8/sIo1XYizCNgHr8N1KrSJLV7PscYa6nje0fHyY5/PRvifEPk5sq/MZe8nshmsNMN3zYdSXxHkHATcLZQiYctJAsB9gypJGYbcQSy5j59P26MJ1qn4hPPwpHmbw04j1KvxP4vp34LO51+JvBKb2QtsZRKcJz4ujgpO/EYXEfJganKEzn0HY5PP0gnCZcJvwiBOi/zuVTOf7b24JkrnuE1UHDWvZPCdyvZjmM4fQXdAmkBQwly6IJ0ohbJFxJxrwoXE0wGSzBd7PHS0Aoto87V3ie+9lM/tP06dg0MJfrVPpYw2TaBL+GGOtpWw8PJuhrhImQP0l4iYPKEnzejL/G0UPCKgRkE/MEY6TySqaAeN7F93kkZi5JUYBgbhbeEJ4T9rMyvEnce4mjnM+7EO5arifj832IPwvx5zPPxykcKxmvmYSthPsSqrsl8JMIyZ5Zgch2EUsO834v/U+l3Xy3f85SGI24zNHvUL+PLHPENH6EloxosmwrFWsuRBzkoJBJMJ8hhNlUlloyxHxayjMmhp0QkxSy3B3nOp3vFjKR8fSf5EqmQqrOeibeMu9tsv5j3tVN5plEJigBglfAUQoJkU1lWcYpORduq/Glktc4uxlrCn09QyXPwaflCNvG+Ikqk+2K7zBiTeD+tVS9MgSfS2X9VPiKU/1OfGhnD32IqhdFTCkkRA0VM4tnHL8mEuMV9LmOcezeOxSfXkthLBM7z1USq5jUIsrxYiqIUzZzKPlfQNxArYJsreP6ZU6XRuA3lNtXhZOQUUF2BhD9eAKNgqCxTFIzE+pYPSfVlUz8AUifRFXYBWnjqNJ7aFdFvK0Q34yvNbRfxb0jiCSO8RtJyG1UrGL8byLjG6kCNVSV2fhQybvCYrjdQfLFEnuAbUIyCebYRqrnBhJok2vsGcSYDI/G7THiaCBGZ3n38Wnx/AynTfjbTHwt/H2MyllK1TYhv+Vq07Nn99tPOnl5c2pwYJpLaPshJJONvGXu37xasEDuJ3tnQuxwLJbxu1wb4UDIRr6rj1NnfARhR/N8R8hy3DaMTXpgAO0SXfuhOJLBHY8/ZGvRn09jeCYQYZyBchLJ4uD7hOsw19rHvAXDvXmP6qPjIEpMZw3fzFptin1ceJQKsABR2XJwE2QNxYK+3j8nhRJ4op9XGZEIPBWmTdswSA8MsJ17sjvDxBMchE8n+xm3fQicRLJOl6h8fYjKFyaGsG/eQ62ItXQp2fIUpT0dERwiy2zT96DwCXsH712WZz3CiglTbUz1d7ApW8zp7EPXcdw2p7ezodvEycgTlWe9hNVAuQ01K4H2G+AjYBFwbB8VbaNHpWdu83v/H8uz0bAojwLPRsP+E2AAhqiSHx1wtuQAAAAASUVORK5CYII=' />",
