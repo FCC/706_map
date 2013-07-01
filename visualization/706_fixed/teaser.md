@@ -15,7 +15,7 @@
 
 <style type="text/css">
 .ts-map .wax-tooltip {
-  max-width:50px !important;
+  max-width:300px !important;
   max-height:300px !important;
   overflow:visible !important;
   width:auto\9 !important;
