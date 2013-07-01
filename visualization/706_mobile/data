@@ -5,31 +5,33 @@
 @una: #ff8240; /*#ffa473 ; /*#ff5900;*/
 @unPop: #fffde3;
 
-@avail_3768: #329000   ;
-@avail_lt_3768: #80c85a;
+@avail_3_768: #329000 ;
+@avail_lt_3_768: #80c85a ;
 @una_rural: #ffb996 ;
 @una_urban: #ff8240 ;
+@tribal: #a60000;
 
-/*
---  (1) mobile availability of at least than 768/200
---  (2) mobile availability at 3/768
-*/
-/*main760mobile_poly*/
-#main706_mobile_poly {
-  [zoom>0][speed=1]{
-    polygon-fill:@avail_3768 }
-  [zoom>0][speed=0]{
-    polygon-fill:@avail_lt_3768 }
-}
 
-/*unavailable*/
-#unavailable {
-  [zoom>0]{
-    polygon-fill:@una_urban}
-}
+/*wireless - maxaddown or maxadup
+1  Less than or equal to 200 kbps.
+2	Greater than 200 kbps and less than 768 kbps.
+3	Greater than or equal to 768 kbps and less than 1.5 mbps.
+4	Greater than or equal to 1.5 mbps and less than 3 mbps.
+5	Greater than or equal to 3 mbps and less than 6 mbps
+6	Greater than or equal to 6 mbps and less than 10 mbps.
+7	Greater than or equal to 10 mbps and less than 25 mbps.
+8	Greater than or equal to 25 mbps and less than 50 mbps.
+9	Greater than or equal to 50 mbps and less than 100 mbps.
+10	Greater than or equal to 100 mbps and less than 1 gbps.
+11	Greater than or equal to 1 gbps.*/
+
+#wireless_3_768{  
+   polygon-fill:@avail_3_768; }
+#wireless_lt_3_768{  
+   polygon-fill:@avail_lt_3_768; }
 
 /*the county layer draw all county boudaries and labels the county names*/
-#county {
+#county_lines {
  [zoom>4][zoom<7]{
   line-color:@darkchrome;
   line-opacity:0.15;
@@ -37,7 +39,7 @@
     }
 }
 
-#county {
+#county_lines {
  [zoom>6][zoom<9]{
   line-color:@darkchrome;
   line-opacity:0.15;
@@ -53,20 +55,20 @@
   text-face-name:@sans-bold;
   text-size:9;
   text-fill:fadeout(@state-name, 55%);
-  text-halo-radius:2.5;
+  text-halo-radius:3;
+  }
+}
+
+/*the nearshore layer is water and on top to cover 'land' and get a 
+  nice coast line*/
+#nearshore {
+  [zoom>6] {
+  polygon-fill:@water; 
   }
 }
 
 /*the state high res layer comes on above zoom scale 7 so the block, county
   and state layers are all coincident*/
-/*the nearshore layer is water and on top to cover 'land' and get a 
-  nice coast line*/
-#nearshore {
-  [zoom>7] {
-  polygon-fill:@water; 
-  }
-}
-
 #state_high_res {
   [zoom>7]{
     line-color: fadeout(#222c31, 45%); 
