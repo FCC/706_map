@@ -6,8 +6,8 @@
     72
   ],
   "center": [
-    -97,
-    35,
+    -98,
+    38,
     4
   ],
   "format": "png",
@@ -52,82 +52,108 @@
       "class": ""
     },
     {
-      "geometry": "multipolygon",
+      "geometry": "polygon",
+      "extent": [
+        -179.14723599999994,
+        -14.548698999999917,
+        179.77846999999988,
+        71.39038000000002
+      ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from carto.states where state in ('60','66','69','72','78') ) as islands",
-        "extent": "",
+        "table": "(select * from carto.state\nwhere state in ('60','66','69','72','78') ) as islands",
         "key_field": "gid",
         "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19942579.0885424,-1637243.58853687,20012847.7359938,11537091.7298767",
         "host": "localhost",
         "port": "54321",
-        "dbname": "fccgis",
-        "id": "islands",
-        "project": "706map",
-        "srs": null
+        "dbname": "feomike"
       },
       "id": "islands",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
       "name": "islands"
     },
     {
-      "geometry": "multipolygon",
+      "geometry": "polygon",
+      "extent": [
+        -176.732474355,
+        -14.373762578000001,
+        145.813849656,
+        70.6031777740001
+      ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from carto.states) as unavailable",
-        "extent": "",
+        "table": "(select * from sbi2012june.shp_wireless\nwhere maxaddown in ('3','4') and maxadup in ('2') ) as wireless",
         "key_field": "gid",
         "geometry_field": "geom",
-        "dbname": "fccgis",
-        "host": "localhost",
-        "port": "54321"
-      },
-      "id": "unavailable",
-      "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "unavailable"
-    },
-    {
-      "geometry": "multipolygon",
-      "Datasource": {
-        "type": "postgis",
-        "table": "(select * from analysis.main706mobile_poly) as main706mobile_poly",
-        "extent": "",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "dbname": "fccgis",
+        "extent_cache": "auto",
+        "extent": "-176.732474355,-14.373762578,145.813849656,70.6031777740001",
         "host": "localhost",
         "port": "54321",
-        "id": "main706mobile_poly",
-        "project": "WirelessAvailability",
-        "srs": null
+        "dbname": "feomike"
       },
-      "id": "main706mobile_poly",
+      "id": "wireless_lt_3_768",
       "class": "",
-      "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "main706mobile_poly"
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "advanced": {},
+      "name": "wireless_lt_3_768"
     },
     {
-      "geometry": "multipolygon",
+      "geometry": "polygon",
+      "extent": [
+        -176.732474355,
+        -14.373762578000001,
+        145.813849656,
+        70.6031777740001
+      ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from analysis.main706_mobile_poly) as main706_mobile_poly",
-        "extent": "",
+        "table": "(select * from sbi2012june.shp_wireless\nwhere maxaddown in ('5','6','7','8','9','10') and maxadup in ('3','4','5','6','7','8','9','10') ) as wireless",
         "key_field": "gid",
         "geometry_field": "geom",
-        "dbname": "fccgis",
+        "extent_cache": "auto",
+        "extent": "-176.732474355,-14.373762578,145.813849656,70.6031777740001",
         "host": "localhost",
-        "port": "54321"
+        "port": "54321",
+        "dbname": "feomike"
       },
-      "id": "main706_mobile_poly",
+      "id": "wireless_3_768",
+      "class": "",
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "advanced": {},
+      "name": "wireless_3_768"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.14723599999994,
+        -14.548698999999917,
+        179.77846999999988,
+        71.39038000000002
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from carto.state) as state_high_res",
+        "key_field": "gid",
+        "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19942579.0885424,-1637243.58853687,20012847.7359938,11537091.7298767",
+        "host": "localhost",
+        "port": "54321",
+        "dbname": "feomike"
+      },
+      "id": "state_high_res",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "main706_mobile_poly"
+      "advanced": {},
+      "name": "state_high_res"
     },
     {
       "geometry": "polygon",
@@ -144,42 +170,29 @@
     },
     {
       "geometry": "polygon",
+      "extent": [
+        -179.23108599999978,
+        -14.60181299999999,
+        179.85968099999982,
+        71.44105899999991
+      ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from carto.tribal) as tribal",
-        "extent": "",
+        "table": "(select * from carto.water_poly) as nearshore",
         "key_field": "gid",
         "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19951913.2278454,-1643352.8198603,20021888.1031606,11554793.5711918",
         "host": "localhost",
         "port": "54321",
-        "dbname": "fccgis",
-        "id": "tribal",
-        "project": "WirelessAvailability",
-        "srs": null
+        "dbname": "feomike"
       },
-      "id": "tribal",
+      "id": "nearshore",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "tribal"
-    },
-    {
-      "geometry": "multipolygon",
-      "name": "state_high_res",
-      "id": "state_high_res",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "class": "",
-      "Datasource": {
-        "table": "(select * from carto.states) as state_high_res",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "extent": "",
-        "type": "postgis",
-        "dbname": "fccgis",
-        "host": "localhost",
-        "port": "54321"
-      },
-      "srs-name": "900913"
+      "advanced": {},
+      "name": "nearshore"
     },
     {
       "geometry": "polygon",
@@ -221,45 +234,6 @@
       }
     },
     {
-      "geometry": "multipolygon",
-      "name": "nearshore",
-      "id": "nearshore",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "class": "",
-      "Datasource": {
-        "table": "(select * from carto.water_poly \n) as nearshore",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "extent": "",
-        "type": "postgis",
-        "dbname": "fccgis",
-        "host": "localhost",
-        "port": "54321"
-      },
-      "srs-name": "900913"
-    },
-    {
-      "geometry": "polygon",
-      "name": "county",
-      "id": "county",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "class": "",
-      "Datasource": {
-        "table": "(select * from carto.county\n) as county",
-        "key_field": "gid",
-        "geometry_field": "geom",
-        "extent": "",
-        "type": "postgis",
-        "dbname": "fccgis",
-        "host": "localhost",
-        "port": "54321",
-        "id": "county",
-        "project": "RoadMiles",
-        "srs": null
-      },
-      "srs-name": "900913"
-    },
-    {
       "geometry": "linestring",
       "id": "coastline",
       "name": "coastline",
@@ -287,22 +261,54 @@
     },
     {
       "geometry": "point",
-      "name": "statecentroids",
+      "extent": [
+        -156.35303236685562,
+        20.268831817091524,
+        -69.23046123415384,
+        65.03481843167305
+      ],
       "id": "statecentroids",
-      "srs": "",
       "class": "",
       "Datasource": {
-        "file": "/Users/michaelsbyrne/Documents/MapBox/data/state_centroids.shp",
-        "id": "statecentroids",
-        "project": "RoadMiles",
-        "srs": null
+        "file": "https://raw.github.com/where-gov/fcc/master/basemap/state_centroids.geojson"
       },
-      "srs-name": "autodetect"
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "statecentroids"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.14723599999994,
+        -14.548698999999917,
+        179.77846999999988,
+        71.39038000000002
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select * from carto.county) as county_lines",
+        "key_field": "gid",
+        "geometry_field": "geom",
+        "extent_cache": "auto",
+        "extent": "-19942579.0885424,-1637243.58853687,20012847.7359938,11537091.7298767",
+        "host": "localhost",
+        "port": "54321",
+        "dbname": "feomike"
+      },
+      "id": "county_lines",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "county_lines"
     }
   ],
-  "name": "Wireless Broadband Availability",
-  "description": "Some Map",
-  "attribution": "Some Attribution",
-  "legend": "<table>\n<tr>\n  <th colspan=\"3\"><strong>Mobile Availability</strong></th>\n<tr>\n  <td><center>Above 3/768</center></td>\n  <td><center>Above 768/200</center></td>\n  <td><center>Unavailable</center></td>\n</tr>\n<tr>\n  <td><center><span style='color:#329000'>▉</center></td>\n  <td><center><span style='color:#80c85a'>▉</center></td>\n  <td><center><span style='color:#ff8240'>▉</center></td>\n</tr>\n<tr>\n  <th colspan=\"3\">Source: National Broadband Map as of 6/2011</th>\n</tr>\n</table>\n",
+  "scale": 1,
+  "metatile": 2,
+  "name": "Section 706 Mobile Broadband Deployment Map",
+  "description": "This map was created by the FCC to illustrate the Commission’s mobile deployment results found in the Ninth Broadband Progress Report, which uses data underlying the National Broadband Map, as of June 30, 2012. It shows areas of the United States with access to mobile services of at least 3 Mbps download and 768 kbps upload, and with and without services of at least 768 kbps download and 200 kbps upload. For more information on the Ninth Broadband Progress Report, visit www.fcc.gov/reports/ninth-broadband-progress-report.",
+  "attribution": "<img align=\"left\" src=",
+  "legend": "<table class=\"tbl-data\">\n<tr>\n  <th colspan=\"3\" class=\"center\"><strong>Mobile Availability</strong></th></tr>\n<tr>\n  <td class=\"center\">Above</td>\n  <td class=\"center\">Above</td>\n  <td class=\"center\">Without</td>\n</tr>\n<tr>\n  <td class=\"center\">3/768</td>\n  <td class=\"center\">768/200</td>\n  <td class=\"center\">Access</td>\n</tr>\n<tr>\n  <td class=\"center\"><span style='color:#329000 '>▉</td>\n  <td class=\"center\"><span style='color:#80c85a'>▉</td>\n  <td class=\"center\"><span style='color:#fffde3'>▉</td>\n</tr>\n<tr>\n<th colspan=\"3\" class=\"center\">Source: National Broadband Map as of 6/2012</th></tr>\n</table>\n\n<style type=\"text/css\">\n.ts-map .wax-legend {\n  max-width:400px !important;\n  max-height:300px !important;\n  overflow:visible !important;\n  width:auto\\9 !important;\n}\n .tbl-data th.center, td.center {\n text-align: center;\n }\n .tbl-data td, .tbl-data th {\n border: none;\n }\n</style>",
   "version": "1.0.1"
 }
