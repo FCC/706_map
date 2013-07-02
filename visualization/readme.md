@@ -44,7 +44,7 @@ Labels
 Base
 ----
 - countries - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/cultural/10m-admin-0-countries.zip
-- islands - PG Layer - (select * from carto.state where state in ('60','66','69','72','78') ) as islands
+- islands - PG Layer - `(select * from carto.state where state in ('60','66','69','72','78') ) as islands`
 - country-border - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/cultural/10m-admin-0-boundary-lines-land.zip
 - state-line - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/cultural/10m-admin-1-states-provinces-lines-shp.zip
 - coastline - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/physical/10m-coastline.zip
@@ -89,7 +89,7 @@ Labels
 Base
 ----
 - countries - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/cultural/10m-admin-0-countries.zip
-- islands - PG Layer - (select * from carto.state where state in ('60','66','69','72','78') ) as islands
+- islands - PG Layer - `(select * from carto.state where state in ('60','66','69','72','78') ) as islands`
 - country-border - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/cultural/10m-admin-0-boundary-lines-land.zip
 - state-line - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/cultural/10m-admin-1-states-provinces-lines-shp.zip
 - coastline - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/physical/10m-coastline.zip
