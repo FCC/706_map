@@ -54,12 +54,12 @@ Base
 
 Creating the Data
 -----------------
-tribal - see https://github.com/fccdata/tribal_layer
-main706_cty_poly - source county demographics file see - https://raw.github.com/feomike/706_map/master/data/county_demographics_2013.txt is joined to a county layer 
-county layer - no url/i right now
-main706_fixed_poly - https://github.com/feomike/706_map/blob/master/processing/create_706_fixed_poly.py
-water - https://raw.github.com/where-gov/fcc/master/basemap/processing/create_water.py 
-state - 
+- tribal - see https://github.com/fccdata/tribal_layer
+- main706_cty_poly - source county demographics file see - https://raw.github.com/feomike/706_map/master/data/county_demographics_2013.txt is joined to a county layer 
+- county layer - no url/i right now
+- main706_fixed_poly - https://github.com/feomike/706_map/blob/master/processing/create_706_fixed_poly.py
+- water - https://raw.github.com/where-gov/fcc/master/basemap/processing/create_water.py 
+- state - 
   
 
 
