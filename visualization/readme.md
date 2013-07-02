@@ -76,9 +76,9 @@ Make sure the wireless at the benchmark is placed on top of the wireless less th
   `where maxaddown in ('5','6','7','8','9','10') and maxadup in ('3','4','5','6','7','8','9','10') ) as wireless`
 - wireless_lt_3_768 - PG Layer - `(select * from sbi2012june.shp_wireless`
   `where maxaddown in ('3','4') and maxadup in ('2','3') ) as wireless`
-county_lines - PG Layer - `(select * from carto.county) as county_lines`
-nearshore - PG - Layer - `(select * from carto.water_poly) as nearshore`
-state_high_res - PG Layer - `(select * from carto.state) as state_high_res`
+- county_lines - PG Layer - `(select * from carto.county) as county_lines`
+- nearshore - PG - Layer - `(select * from carto.water_poly) as nearshore`
+- state_high_res - PG Layer - `(select * from carto.state) as state_high_res`
 
 
 Labels
