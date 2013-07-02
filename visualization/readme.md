@@ -19,7 +19,6 @@ a field called myvalue with this codes:
 2. unavailable at 3/768 w/ population
 
 3. unpopulated
-
 4. water
 
 plus a field called rural_urban with these codes:
