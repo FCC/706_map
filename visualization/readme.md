@@ -38,8 +38,8 @@ Main Data
 
 Labels
 ------
-statecentroids - https://raw.github.com/where-gov/fcc/master/basemap/state_centroids.geojson
-city-name - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/cultural/10m-populated-places-simple.zip
+- statecentroids - https://raw.github.com/where-gov/fcc/master/basemap/state_centroids.geojson
+- city-name - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/cultural/10m-populated-places-simple.zip
 
 Base
 ----
