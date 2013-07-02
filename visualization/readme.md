@@ -15,9 +15,7 @@ The classes attribute structure is:
 a field called myvalue with this codes:
 
 1. fixed availability at 3/768
-
 2. unavailable at 3/768 w/ population
-
 3. unpopulated
 4. water
 
