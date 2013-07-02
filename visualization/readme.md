@@ -1,18 +1,16 @@
 readme.md
 =========
 
-706_map
+706_maps - map for the 706 report
 =======
 
-map for the 706 report
 
 Fixed Map
 =========
 
 The fixed map is a 6 color categorical map showing places with at least a certain access stratified by rural or urban classification.  The color scheme is based on a lookup value for available at the benchmark or not in rural or urban (4 classes), is unpopulated, or is water.  A final dataset showing tribal areas is outlined.
 
-The classes attribute structure is:
-a field called myvalue with this codes:
+The classes attribute structure is a field called myvalue with these codes:
 
 1. fixed availability at 3/768
 2. unavailable at 3/768 w/ population
@@ -22,6 +20,7 @@ a field called myvalue with this codes:
 plus a field called rural_urban with these codes:
 - U is urban
 - R is rural
+
 
 Data Dependency's
 -----------------
