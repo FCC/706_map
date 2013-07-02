@@ -87,7 +87,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select * from sbi2012june.shp_wireless\nwhere maxaddown in ('3','4') and maxadup in ('2') ) as wireless",
+        "table": "(select * from sbi2012june.shp_wireless\nwhere maxaddown in ('3','4') and maxadup in ('2','3') ) as wireless",
         "key_field": "gid",
         "geometry_field": "geom",
         "extent_cache": "auto",
