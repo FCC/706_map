@@ -27,7 +27,9 @@ Data Dependency's
 Main Data
 ---------
 - tribal lines - PG Layer - `(select * from carto.tribal) as tirbal_lines`
-- main706_cty_poly - (Mouseover layer) PG Layer -  `(select gid, geom, cty, cty_name, state_name, fips, to_char(pop_2012,'999,999,999') as pop_2012, round(density,0) as density, to_char(percapinc,'999,999,999') as percapinc from carto.county, sbi2012june.main706_cty where county.cty=main706_cty.fips)` as main706_cty_poly`
+- main706_cty_poly - (Mouseover layer) PG Layer -  `(select gid, geom, cty, cty_name, state_name, fips, to_char(pop_2012,'999,999,999') as pop_2012, round(density,0) as density, to_char(percapinc,'999,999,999') as percapinc `
+  `from carto.county, sbi2012june.main706_cty `
+  `where county.cty=main706_cty.fips) as main706_cty_poly`
 - main706_fixed_poly - PG Layer - `(select * from sbi2012june.main706_fixed_poly) as main706_fixed_poly`
 - county_lines - PG Layer - `(select * from carto.county) as county_lines`
 - nearshore - PG - Layer - `(select * from carto.water_poly) as nearshore`
