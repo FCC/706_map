@@ -13,10 +13,10 @@ The fixed map is a 6 color categorical map showing places with at least a certai
 
 The classes attribute structure is:
 a field called myvalue with this codes:
-1) fixed availability at 3/768
-2) unavailable at 3/768 w/ population
-3) unpopulated
-4) water
+1. fixed availability at 3/768
+2. unavailable at 3/768 w/ population
+3. unpopulated
+4. water
 
 plus a field called rural_urban with these codes:
 - U is urban
