@@ -25,7 +25,6 @@ myHost = "localhost"
 myPort = "54321"
 myUser = "postgres"
 db = "feomike"
-cen_schema = "census2010"
 schema = "analysis"
 infile = "mosaik_201301_4g"
 srcdir = "/users/feomike/documents/analysis/2013/mosaic_overlay_jan2013/Mosaik_January_2013_LTE_HSPAPLUS_WIMAX/"
@@ -86,7 +85,7 @@ conn = psycopg2.connect(myConn)
 cur = conn.cursor()
 
 try:
-#	importFile (srcdir + infile + ".shp", infile)
+	importFile (srcdir + infile + ".shp", infile)
 	mkValid (infile)
 	mkUnion (infile)
 	
