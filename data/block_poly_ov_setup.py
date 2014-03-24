@@ -62,33 +62,21 @@ def mkUnion(myFile):
 	mySQL = mySQL + "COMMIT; "	
 	print "     dissolving geometries ..."
 	print mySQL
-#	cur.execute(mySQL)
-	return()
-
-def mkSingle(myFile):
-	mySQL = "SET enable_seqscan TO off; "	
-	mySQL = mySQL + "DROP TABLE if exists " + schema + "." + myFile + "_final; "
-	mySQL = mySQL + "CREATE TABLE " + schema + "." + myFile + "_final AS "
-	mySQL = mySQL + "SELECT (ST_Dump(geom)).geom, mkg_name, entity, protocol FROM "
-	mySQL = mySQL +  schema + "." + myFile + "; "
-	mySQL = mySQL + "SET enable_seqscan TO on; "
-	#add constraints
-	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_final add COLUMN "
+	cur.execute(mySQL)
+	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_union add COLUMN "
 	mySQL = mySQL + " GID SERIAL NOT NULL; "
-	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_final add CONSTRAINT "
-	mySQL = mySQL + schema + "_" + myFile + "_gid_pkey PRIMARY KEY (gid ); "
-	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_final add CONSTRAINT "
+	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_union add CONSTRAINT "
+	mySQL = mySQL + schema + "_" + myFile + "_union_gid_pkey PRIMARY KEY (gid ); "
+	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_union add CONSTRAINT "
 	mySQL = mySQL + " enforce_dims_geom CHECK (st_ndims(geom) = 2); "
-	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_final add CONSTRAINT "
+	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_union add CONSTRAINT "
 	mySQL = mySQL + " enforce_srid_geom CHECK (st_srid(geom) = 4326); "
-	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_final add CONSTRAINT "
+	mySQL = mySQL + "ALTER TABLE " + schema + "." + myFile + "_union add CONSTRAINT "
 	mySQL = mySQL + " enforce_geotype_geom CHECK (geometrytype(geom) = 'MULTIPOLYGON'::text "
 	mySQL = mySQL + " OR CHECK (geometrytype(geom) = 'POLYGON'::text OR geom IS NULL); "		
-	mySQL = mySQL + "CREATE INDEX " + schema + "_" + myFile + "_final_geom_gist ON "
+	mySQL = mySQL + "CREATE INDEX " + schema + "_" + myFile + "_union_geom_gist ON "
 	mySQL = mySQL + schema + "." + myFile + " USING gist (geom); COMMIT; "
-	print "     unpaking to single feature geometries ..."
-#	print mySQL
-#	cur.execute(mySQL)
+	cur.execute(mySQL)	
 	return()
 
 
@@ -101,7 +89,6 @@ try:
 #	importFile (srcdir + infile + ".shp", infile)
 	mkValid (infile)
 	mkUnion (infile)
-	mkSingle (infile)
 	
 except:
 	print "			something bad happened ..."
