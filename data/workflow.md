@@ -64,8 +64,20 @@ I have written [code to perform this step in python/PostGIS](https://github.com/
 The result here should be a single shapefile (or could be single feature class in a file geodatabase) which has (a) no geometry errors and (b) 1 row per mkg_name, entity, protocol (e.g. provider name and technology).
 
 ****__Step 2: Part 2 - Overlay with blocks by state__****
-I have found that processing this in ESRI desktop is smoother and faster generally.  I imagine w/ time one could optimize the PostGIS setup to handle these this faster, I just haven't had the time to do so.  I have written both a [PostGIS](https://github.com/fccdata/706_map/blob/master/data/block_poly_ov.py) and an [ESRI]() approach to procesisng the Mosaik / Block overlay.  I reccommend using the [ESRI]()
+I have found that processing this in ESRI desktop is smoother and faster generally.  I imagine w/ time one could optimize the PostGIS setup to handle these this faster, I just haven't had the time to do so.  I have written both a [PostGIS](https://github.com/fccdata/706_map/blob/master/data/block_poly_ov.py) and an [ESRI](https://github.com/fccdata/706_map/blob/master/data/mosaic_block_overlay_esri.py) approach to procesisng the Mosaik / Block overlay.  I reccommend using the [ESRI](https://github.com/fccdata/706_map/blob/master/data/mosaic_block_overlay_esri.py).
 
+The ESRI script runs in a set of loops.  For each state, it runs for all OBjectID's in the Mosaik Feature Class.  One could change up the ID line to it only performed on a certain set (above, below, equal to) of ObjectIDs.
+
+The results from this script are a set of tables inside the processing file geodatabase with the percent of overlap from each block for each single feature in the Mosaik input feature.  
+
+****__Step 2: Part 3 - Combine resulting state tables__****
+- Move each set of individual state Mosaik features into a single table of States
+- Export the State tables to csvs
+- Read the CSVs into postgres
+- Write out the unique list of blocks in the table w/ the maximum percent overlap amount
+
+Step 3: Prepare Maps
+-------------------------
 
 
 
