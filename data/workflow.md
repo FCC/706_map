@@ -71,10 +71,15 @@ The ESRI script runs in a set of loops.  For each state, it runs for all OBjectI
 The results from this script are a set of tables inside the processing file geodatabase with the percent of overlap from each block for each single feature in the Mosaik input feature.  
 
 ****__Step 2: Part 3 - Combine resulting state tables__****
-- Move each set of individual state Mosaik features into a single table of States
-- Export the State tables to csvs
-- Read the CSVs into postgres
-- Write out the unique list of blocks in the table w/ the maximum percent overlap amount
+The goal is to acquire the maximum overlap of 3G/4G for each block.  Since the result of Step 2: Part 2 completes, is a set of tables, we (a) aggreate these tables to single tables, (b) export these state tables to csv, (c) import these state csv's to 1 single Postgres table, and (d) export to one csv for the 706 team one row per block w/ the maximum percent overlap.
+
+In order to aggreate the individual file geodatabase state / Mosaik features tables to state tables, run the following [python/ArcGIS script](https://github.com/fccdata/706_map/blob/master/data/MO_Wireless_Block_Append.py).  This script will need to be edited to make sure the source fgdbs are appropriately being pointed to.  The results of this script are one table per state in a single FGDB.
+
+In order to export the resulting state only tables to csv, run the following [python/ArcGIS script](https://github.com/fccdata/706_map/blob/master/data/MO_Export_WirelessOverlay.py).  This script will beed to be edited to make sure the source fgdbs are appropriately being pointed to.  The results of this script are 1 csv per state table.
+
+Import the csv's into PostGres with the following [python/psycopg script]().  This script will need to be edited to make sure the source csv's and results tables are appropriately being pointed to.  The results of this script are 1 table in PostGres with rows for each of the imported state csv's.
+
+The final step here is to export the data as a csv for the 706 team which has 1 row per block (e.g. block_fips) and the maximum percent overlap of that block with any 3G/4G service.  To do this use this [python/psycopg script]().  This script will need to be edited to make sure the appropriate source data is being pointed to.  The results is one csv to be handed to the 706 data team.
 
 Step 3: Prepare Maps
 -------------------------
