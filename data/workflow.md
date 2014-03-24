@@ -47,6 +47,25 @@ The 706 table (e.g. main706) is the primary analysis used for the 706 report.  I
     <tr><td>fixed_100000_50000_hhu</td><td>Housing Units in the block with access to fixed broadband of at least 100 Mbps down and 50 Mbps up</td></tr>
 </table>
 
+Fixed technology includes, DSL, Copper, Cable, Fiber, Fixed Wireless, Other and BPL.  Fields then repeat for the same speed teirs in mobile technology.  
+
+Step 2: Prepare Mosaik percent overlap tables
+---------------------------------------------
+This phase of the project takes the 3G and 4G polygons from Mosaik, and overlays them with Census Blocks.  The final output here is a collection of blocks with the maximum percent overlap from ANY Mosaik 3G or 4G service.  The resulting table is one row per block with the maximum percent overlap; the provider and specific technology is not applied.  The 706 team uses this in conjunction w/ the centroid method acquired from the WTB.  This process will change when we use new form 477 rather than Mosaik as the primary collection.  The processing here has 3 parts;
+- Part 1 - Pre-procesisng steps
+- Part 2 - Overlay with blocks by state
+- Part 3 - Combine resulting state tables and acquire maximum percent overlay per block
+
+****__Step 2: Part 1 - Pre-procesisng steps__****
+This step in the process primarily takes the input Mosaik Shape files and ensures, (a) there are no geometry errors, (b) and there is one row per provider/technology combination.  Doing this makes the process exactly like the NBM wireless overlay processing.  In general, the Mosaik data seems to come in with a significant number of geometry issues.
+
+I have written [code to perform this step in python/PostGIS](https://github.com/fccdata/706_map/blob/master/data/block_poly_ov_setup.py) for doing this.  I have found that this code takes a super long time, becuase (a) the Mosaik data has so many geometry errors, (b) PostGIS processing here is slow, unless the DB is tuned appropriately, and (c) generally ESRI dissolves are faster.  I have switched to procesisng these steps by hand in ESRI desktop rather than PostGIS.  __sigh__.  
+
+The result here should be a single shapefile (or could be single feature class in a file geodatabase) which has (a) no geometry errors and (b) 1 row per mkg_name, entity, protocol (e.g. provider name and technology).
+
+****__Step 2: Part 2 - Overlay with blocks by state__****
+I have found that processing this in ESRI desktop is smoother and faster generally.  I imagine w/ time one could optimize the PostGIS setup to handle these this faster, I just haven't had the time to do so.  I have written both a [PostGIS](https://github.com/fccdata/706_map/blob/master/data/block_poly_ov.py) and an [ESRI]() approach to procesisng the Mosaik / Block overlay.  I reccommend using the [ESRI]()
+
 
 
 
