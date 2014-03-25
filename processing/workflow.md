@@ -56,7 +56,7 @@ This phase of the project takes the 3G and 4G polygons from Mosaik, and overlays
 - Part 2 - Overlay with blocks by state
 - Part 3 - Combine resulting state tables and acquire maximum percent overlay per block
 
-__Step 2: Part 1 - Pre-procesisng steps__
+_Step 2: Part 1 - Pre-procesisng steps_
 This step in the process primarily takes the input Mosaik Shape files and ensures, (a) there are no geometry errors, (b) and there is one row per provider/technology combination.  Doing this makes the process exactly like the NBM wireless overlay processing.  In general, the Mosaik data seems to come in with a significant number of geometry issues.
 
 I have written [code to perform this step in python/PostGIS](https://github.com/fccdata/706_map/blob/master/processing/block_poly_ov_setup.py) for doing this.  I have found that this code takes a super long time, becuase (a) the Mosaik data has so many geometry errors, (b) PostGIS processing here is slow, unless the DB is tuned appropriately, and (c) generally ESRI dissolves are faster.  I have switched to procesisng these steps by hand in ESRI desktop rather than PostGIS.  __sigh__.  
