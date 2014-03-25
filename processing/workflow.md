@@ -59,14 +59,14 @@ This phase of the project takes the 3G and 4G polygons from Mosaik, and overlays
 **_Step 2: Part 1 - Pre-procesisng steps_**
 This step in the process primarily takes the input Mosaik Shape files and ensures, (a) there are no geometry errors, (b) and there is one row per provider/technology combination.  Doing this makes the process exactly like the NBM wireless overlay processing.  In general, the Mosaik data seems to come in with a significant number of geometry issues.
 
-I have written [code to perform this step in python/PostGIS](https://github.com/fccdata/706_map/blob/master/processing/block_poly_ov_setup.py) for doing this.  I have found that this code takes a super long time, becuase (a) the Mosaik data has so many geometry errors, (b) PostGIS processing here is slow, unless the DB is tuned appropriately, and (c) generally ESRI dissolves are faster.  I have switched to procesisng these steps by hand in ESRI desktop rather than PostGIS.  __sigh__.  
+I have written [code to perform this step in python/PostGIS](https://github.com/fccdata/706_map/blob/master/processing/block_poly_ov_setup.py) for doing this.  I have found that this code takes a super long time, becuase (a) the Mosaik data has so many geometry errors, (b) PostGIS processing here is slow, unless the DB is tuned appropriately, and (c) generally ArcGIS dissolves are faster.  I have switched to procesisng these steps by hand in ArcGIS desktop rather than PostGIS.  **_sigh_**.  
 
 The result here should be a single shapefile (or could be single feature class in a file geodatabase) which has (a) no geometry errors and (b) 1 row per mkg_name, entity, protocol (e.g. provider name and technology).
 
-****__Step 2: Part 2 - Overlay with blocks by state__****
-I have found that processing this in ESRI desktop is smoother and faster generally.  I imagine w/ time one could optimize the PostGIS setup to handle these this faster, I just haven't had the time to do so.  I have written both a [PostGIS](https://github.com/fccdata/706_map/blob/master/processing/block_poly_ov.py) and an [ESRI](https://github.com/fccdata/706_map/blob/master/processing/mosaic_block_overlay_esri.py) approach to procesisng the Mosaik / Block overlay.  I reccommend using the [ESRI](https://github.com/fccdata/706_map/blob/master/processing/mosaic_block_overlay_esri.py).
+**_Step 2: Part 2 - Overlay with blocks by state_**
+I have found that processing this in ArcGIS desktop is smoother and faster generally.  I imagine w/ time one could optimize the PostGIS setup to handle these this faster, I just haven't had the time to do so.  I have written both a [PostGIS](https://github.com/fccdata/706_map/blob/master/processing/block_poly_ov.py) and an [ArcGIS](https://github.com/fccdata/706_map/blob/master/processing/mosaic_block_overlay_esri.py) approach to procesisng the Mosaik / Block overlay.  I reccommend using the [ArcGIS](https://github.com/fccdata/706_map/blob/master/processing/mosaic_block_overlay_esri.py).
 
-The ESRI script runs in a set of loops.  For each state, it runs for all OBjectID's in the Mosaik Feature Class.  One could change up the ID line to it only performed on a certain set (above, below, equal to) of ObjectIDs.
+The ArcGIS script runs in a set of loops.  For each state, it runs for all OBjectID's in the Mosaik Feature Class.  One could change up the ID line to it only performed on a certain set (above, below, equal to) of ObjectIDs.
 
 The results from this script are a set of tables inside the processing file geodatabase with the percent of overlap from each block for each single feature in the Mosaik input feature.  
 
