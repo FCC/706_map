@@ -15,7 +15,7 @@ Step 1: Prepare 706 Table
 The 706 table (e.g. main706) is the primary analysis used for the 706 report.  It is generated from the National Broadband Map contractor team (computech at the initial writing of this document), and contains 1 record per block, with a set of metrics of population/housing units in each block which have fixed broadband at a certain speed available to it.  Below is an example of what this table looks like:
 
 <table>
-	<tr><td>Column</td><td>Definition</td></tr>
+    <tr><td>Column</td><td>Definition</td></tr>
     <tr><td>block_fips</td><td>15 character block code </td></tr>
     <tr><td>pop_2011</td><td>population for the year 2011 in that block</td></tr>
     <tr><td>hhu_2001</td><td>housing units fof 2011 in that block</td></tr>
@@ -59,12 +59,12 @@ This phase of the project takes the 3G and 4G polygons from Mosaik, and overlays
 ****__Step 2: Part 1 - Pre-procesisng steps__****
 This step in the process primarily takes the input Mosaik Shape files and ensures, (a) there are no geometry errors, (b) and there is one row per provider/technology combination.  Doing this makes the process exactly like the NBM wireless overlay processing.  In general, the Mosaik data seems to come in with a significant number of geometry issues.
 
-I have written [code to perform this step in python/PostGIS](https://github.com/fccdata/706_map/blob/master/data/block_poly_ov_setup.py) for doing this.  I have found that this code takes a super long time, becuase (a) the Mosaik data has so many geometry errors, (b) PostGIS processing here is slow, unless the DB is tuned appropriately, and (c) generally ESRI dissolves are faster.  I have switched to procesisng these steps by hand in ESRI desktop rather than PostGIS.  __sigh__.  
+I have written [code to perform this step in python/PostGIS](https://github.com/fccdata/706_map/blob/master/processing/block_poly_ov_setup.py) for doing this.  I have found that this code takes a super long time, becuase (a) the Mosaik data has so many geometry errors, (b) PostGIS processing here is slow, unless the DB is tuned appropriately, and (c) generally ESRI dissolves are faster.  I have switched to procesisng these steps by hand in ESRI desktop rather than PostGIS.  __sigh__.  
 
 The result here should be a single shapefile (or could be single feature class in a file geodatabase) which has (a) no geometry errors and (b) 1 row per mkg_name, entity, protocol (e.g. provider name and technology).
 
 ****__Step 2: Part 2 - Overlay with blocks by state__****
-I have found that processing this in ESRI desktop is smoother and faster generally.  I imagine w/ time one could optimize the PostGIS setup to handle these this faster, I just haven't had the time to do so.  I have written both a [PostGIS](https://github.com/fccdata/706_map/blob/master/data/block_poly_ov.py) and an [ESRI](https://github.com/fccdata/706_map/blob/master/data/mosaic_block_overlay_esri.py) approach to procesisng the Mosaik / Block overlay.  I reccommend using the [ESRI](https://github.com/fccdata/706_map/blob/master/data/mosaic_block_overlay_esri.py).
+I have found that processing this in ESRI desktop is smoother and faster generally.  I imagine w/ time one could optimize the PostGIS setup to handle these this faster, I just haven't had the time to do so.  I have written both a [PostGIS](https://github.com/fccdata/706_map/blob/master/processing/block_poly_ov.py) and an [ESRI](https://github.com/fccdata/706_map/blob/master/processing/mosaic_block_overlay_esri.py) approach to procesisng the Mosaik / Block overlay.  I reccommend using the [ESRI](https://github.com/fccdata/706_map/blob/master/processing/mosaic_block_overlay_esri.py).
 
 The ESRI script runs in a set of loops.  For each state, it runs for all OBjectID's in the Mosaik Feature Class.  One could change up the ID line to it only performed on a certain set (above, below, equal to) of ObjectIDs.
 
@@ -73,9 +73,9 @@ The results from this script are a set of tables inside the processing file geod
 ****__Step 2: Part 3 - Combine resulting state tables__****
 The goal is to acquire the maximum overlap of 3G/4G for each block.  Since the result of Step 2: Part 2 completes, is a set of tables, we (a) aggreate these tables to single tables, (b) export these state tables to csv, (c) import these state csv's to 1 single Postgres table, and (d) export to one csv for the 706 team one row per block w/ the maximum percent overlap.
 
-In order to aggreate the individual file geodatabase state / Mosaik features tables to state tables, run the following [python/ArcGIS script](https://github.com/fccdata/706_map/blob/master/data/MO_Wireless_Block_Append.py).  This script will need to be edited to make sure the source fgdbs are appropriately being pointed to.  The results of this script are one table per state in a single FGDB.
+In order to aggreate the individual file geodatabase state / Mosaik features tables to state tables, run the following [python/ArcGIS script](https://github.com/fccdata/706_map/blob/master/processing/MO_Wireless_Block_Append.py).  This script will need to be edited to make sure the source fgdbs are appropriately being pointed to.  The results of this script are one table per state in a single FGDB.
 
-In order to export the resulting state only tables to csv, run the following [python/ArcGIS script](https://github.com/fccdata/706_map/blob/master/data/MO_Export_WirelessOverlay.py).  This script will beed to be edited to make sure the source fgdbs are appropriately being pointed to.  The results of this script are 1 csv per state table.
+In order to export the resulting state only tables to csv, run the following [python/ArcGIS script](https://github.com/fccdata/706_map/blob/master/processing/MO_Export_WirelessOverlay.py).  This script will beed to be edited to make sure the source fgdbs are appropriately being pointed to.  The results of this script are 1 csv per state table.
 
 Import the csv's into PostGres with the following [python/psycopg script]().  This script will need to be edited to make sure the source csv's and results tables are appropriately being pointed to.  The results of this script are 1 table in PostGres with rows for each of the imported state csv's.
 
